@@ -1,34 +1,41 @@
 const { celebrate, Joi } = require('celebrate');
 const validator = require('validator');
+// const ValidationError = require('../errors/validation-error');
 
 const validationUser = celebrate({
   body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required().min(3),
+    email: Joi.string().required().email().messages({ 'any.required': 'Поле не заполнено' }),
+    password: Joi.string().required().min(3).messages({ 'any.required': 'Поле не заполнено' }),
     name: Joi.string().min(2),
   }).unknown(true),
 });
 
 const validationUserPatch = celebrate({
   body: Joi.object().keys({
-    email: Joi.string().email(),
-    name: Joi.string().min(2),
+    email: Joi.string().email().messages({ 'any.required': 'Поле не заполнено' }),
+    name: Joi.string().min(2).messages({ 'any.required': 'Поле не заполнено' }),
   }).unknown(true),
 });
 
 const validationMovie = celebrate({
   body: Joi.object().keys({
-    country: Joi.string().required().min(3).max(30),
-    director: Joi.string().required().min(3).max(30),
-    year: Joi.string().required().min(4).max(4),
-    description: Joi.string().required().min(3).max(3000),
-    image: Joi.string().required().custom((value) => validator.isURL(value) && value),
-    trailer: Joi.string().required().custom((value) => validator.isURL(value) && value),
-    thumbnail: Joi.string().required().custom((value) => validator.isURL(value) && value),
-    nameRU: Joi.string().required().min(3).max(50),
-    nameEN: Joi.string().required().min(3).max(50),
-    duration: Joi.number().required().max(500),
-    movieId: Joi.number().required().max(500),
+    country: Joi.string().required().min(3).max(30)
+      .messages({ 'any.required': 'Поле не заполнено' }),
+    director: Joi.string().required().min(3).max(30)
+      .messages({ 'any.required': 'Поле не заполнено' }),
+    year: Joi.string().required().min(4).max(4)
+      .messages({ 'any.required': 'Поле не заполнено' }),
+    description: Joi.string().required().min(3).max(3000)
+      .messages({ 'any.required': 'Поле не заполнено' }),
+    image: Joi.string().required().custom((value) => validator.isURL(value) && value).messages({ 'any.required': 'Поле не заполнено' }),
+    trailer: Joi.string().required().custom((value) => validator.isURL(value) && value).messages({ 'any.required': 'Поле не заполнено' }),
+    thumbnail: Joi.string().required().custom((value) => validator.isURL(value) && value).messages({ 'any.required': 'Поле не заполнено' }),
+    nameRU: Joi.string().required().min(3).max(50)
+      .messages({ 'any.required': 'Поле не заполнено' }),
+    nameEN: Joi.string().required().min(3).max(50)
+      .messages({ 'any.required': 'Поле не заполнено' }),
+    duration: Joi.number().required().max(500).messages({ 'any.required': 'Поле не заполнено' }),
+    movieId: Joi.number().required().max(500).messages({ 'any.required': 'Поле не заполнено' }),
   }).unknown(true),
 });
 

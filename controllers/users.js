@@ -16,7 +16,6 @@ const createUser = (req, res, next) => {
       name, email, password: hash,
     }))
     .then((data) => res.send({
-      password: data.password,
       name: data.name,
       email: data.email,
     }))

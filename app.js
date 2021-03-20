@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const { errors } = require('celebrate');
+// const { errors } = require('celebrate');
 const helmet = require('helmet');
 const limiter = require('./milddlewares/rateLimiter');
 const router = require('./routes/index.js');
@@ -25,7 +25,7 @@ app.use(cors());
 app.use(helmet());
 app.use(router);
 app.use(errorLogger);
-app.use(errors());
+// app.use(errors());
 app.use(errorHandler);
 
 app.listen(PORT);

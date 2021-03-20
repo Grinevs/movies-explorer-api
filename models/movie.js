@@ -4,7 +4,7 @@ const ValidationError = require('../errors/validation-error');
 
 const movieSchema = new mongoose.Schema({
   movieId: {
-    type: Number,
+    type: String,
     required: true,
   },
   country: {
